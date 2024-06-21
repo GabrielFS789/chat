@@ -264,19 +264,19 @@
           <div>
             <div class="tab-container">
               <q-tabs v-model="selectedTab" class="tab-scroll">
-                <q-tab name="open" v-if="openTickets.length > 0">
+                <q-tab name="open">
                   Abertos
                   <q-badge v-if="openTickets.length > 0" color="red" textColor="white">{{ openTickets.length }}</q-badge>
                 </q-tab>
-                <q-tab name="pending" v-if="pendingTickets.length > 0">
+                <q-tab name="pending">
                   Pendentes
                   <q-badge v-if="pendingTickets.length > 0" color="red" textColor="white">{{ pendingTickets.length }}</q-badge>
                 </q-tab>
-                <q-tab name="closed" v-if="closedTickets.length > 0">
+                <q-tab name="closed">
                   Fechados
                   <q-badge v-if="closedTickets.length > 0" color="red" textColor="white">{{ closedTickets.length }}</q-badge>
                 </q-tab>
-                <q-tab name="group" v-if="groupTickets.length > 0">
+                <q-tab name="group">
                   Grupos
                   <q-badge v-if="groupTickets.length > 0" color="red" textColor="white">{{ groupTickets.length }}</q-badge>
                 </q-tab>
@@ -646,7 +646,11 @@
               <q-card-section class="q-pa-none">
                 <template v-if="ticketFocado.scheduledMessages">
                   <q-list>
-                    <q-item v-for="(message, idx) in ticketFocado.scheduledMessages.filter((msg) => !msg.isDeleted)" :key="idx" clickable>
+                    <q-item
+                      v-for="(message, idx) in ticketFocado.scheduledMessages"
+                      :key="idx"
+                      clickable
+                    >
                       <q-item-section>
                         <q-item-label caption>
                           <b>Agendado para:</b> {{ $formatarData(message.scheduleDate, 'dd/MM/yyyy HH:mm') }}
@@ -927,7 +931,7 @@ export default {
       return this.tickets.filter(ticket => ticket.status === 'closed' && !ticket.isGroup)
     },
     groupTickets () {
-      return this.tickets.filter(ticket => ticket.isGroup)
+      return this.tickets.filter(ticket => ticket.isGroup === 'true')
     }
   },
   methods: {
@@ -1088,9 +1092,8 @@ export default {
       }).onOk(() => {
         this.loading = true
         DeletarMensagem(data)
-          .then((res) => {
+          .then(res => {
             this.loading = false
-            mensagem.isDeleted = true
           })
           .catch(error => {
             this.loading = false

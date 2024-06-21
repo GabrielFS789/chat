@@ -14,7 +14,7 @@
         >
           <q-card-section class="text-primary text-center">
             <q-img
-              src="/logo_izing.png"
+              src="/logo_pdv.png"
               spinner-color="white"
               style="height: 110px; max-width: 290px"
               class="q-mb-lg q-px-md"

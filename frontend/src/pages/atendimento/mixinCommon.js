@@ -20,7 +20,7 @@ export default {
     dataInWords (date) {
       return format(parseJSON(date), 'HH:mm', { locale: pt })
     },
-    farmatarMensagemWhatsapp (body) {
+    formatarMensagemWhatsapp (body) {
       if (!body) return
       let format = body
       function is_aplhanumeric (c) {

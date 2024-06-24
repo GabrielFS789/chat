@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div
     class="bg-white no-scroll hide-scrollbar overflow-hidden"
@@ -138,7 +139,7 @@
             </q-item-label>
             <q-item-label
               lines="4"
-              v-html="farmatarMensagemWhatsapp(replyingMessage.body)"
+              v-html="formatarMensagemWhatsapp(replyingMessage.body)"
             >
             </q-item-label>
           </q-item-section>
@@ -597,8 +598,8 @@ audio {
   z-index: 99;
 }
 
-// /* CSS Logilcs */
-// #message-box {
+/* CSS Logilcs */
+//#message-box {
 //   &:empty ~ #submit-button {
 //     display: none;
 //   } /*when textbox empty show microhpone*/
